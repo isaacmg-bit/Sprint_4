@@ -10,15 +10,23 @@ type AppResponse = {
   message: string;
 };
 
+// TS: This is our own response structure, the one we will print throught console.
+
 const getJoke = async (): Promise<AppResponse> => {
   // TS: async function converts return to promise, thats why we wrap it in promise now
   try {
     const jokeTextBox = document.querySelector<HTMLElement>("#jokebox"); // TS: We are expecting an Element, and seeing that we use textContent on it later, we are expecting an HTMLElement
+    const buttonElement = document.querySelector<HTMLButtonElement>("button");
 
     if (!jokeTextBox) {
       throw new Error("The HTMLElement (p) does not exist!");
     }
     // We check if the HTMLElement exists
+
+    if (!buttonElement) {
+      throw new Error("Button element not found in DOM!");
+    }
+    // We check if the button exists on the HTML.
 
     const response = await fetch("https://icanhazdadjoke.com/", {
       // Function gets 'paused' until fetch resolves
