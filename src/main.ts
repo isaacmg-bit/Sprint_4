@@ -1,4 +1,4 @@
-interface JokeResponse {
+interface ApiResponse {
   // TS: We define the response structure. We know due to the API documentation that the GET request will return an object with these three properties
   id: string;
   joke: string;
@@ -10,43 +10,54 @@ type AppResponse = {
   message: string;
 };
 
-const getJoke = (): void => {
-  // TS: Added error control, so now we expect a response and not void
+const getJoke = async (): Promise<AppResponse> => {
+  // TS: async function converts return to promise, thats why we wrap it in promise now
   try {
     const jokeTextBox = document.querySelector<HTMLElement>("#jokebox"); // TS: We are expecting an Element, and seeing that we use textContent on it later, we are expecting an HTMLElement
 
     if (!jokeTextBox) {
-      throw new Error("The HTMLElement does not exist!");
+      throw new Error("The HTMLElement (p) does not exist!");
+    }
+    // We check if the HTMLElement exists
+
+    const response = await fetch("https://icanhazdadjoke.com/", {
+      // Function gets 'paused' until fetch resolves
+      method: "GET",
+      headers: { Accept: "application/json" },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch joke: ${response.status}`);
+    }
+    // response.ok checks that the status is in the range 200-299
+
+    const data: ApiResponse = await response.json(); // function pauses until we parse the body from the response
+
+    if (!data.joke) {
+      throw new Error("Could not find the property 'joke' on the API response");
     }
 
-    fetch("https://icanhazdadjoke.com/", {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-      },
-    })
-      .then((response: Response) => response.json()) // TS: We expect a Response (native JS/TS type)
-      .then((data: JokeResponse) => {
-        // TS: It returns a promise by default. We expect an object with id, joke and status as per the API documentation
+    jokeTextBox.textContent = data.joke;
 
-        if (jokeTextBox) {
-          // TS: We use an IF to validate that jokeTextBox will NOT be NULL
-          jokeTextBox.textContent = data.joke; // TS: We take the .joke property from the returned objetct, and it will be a string as defined in JokeResponse
-        }
-      });
-      return {
-        status: 200,
-        message: "OK!"
-      }
+    // we do this last validation just for the sake of it, but it checks if joke exists inside data, and if it does, we print it on the html
+
+    return {
+      status: 200,
+      message: "OK!",
+    };
+
+    // now we get the return when everything has been done and not right when we launch the function, as expected
   } catch (err: unknown) {
     return {
       status: 400,
-      message: err instanceof Error ? `Error: ${err.message}` : "Unknown error" // TS: We ask if err was created by Error, and if true, we throw the error message from the error that happened. If something weird happens, we throw Unknown error.
+      message: err instanceof Error ? `Error: ${err.message}` : "Unknown error", // TS: We ask if err was created by Error, and if true, we throw the error message from the error that happened. If something weird happens, we throw Unknown error.
     };
   }
 };
 
-getJoke(); // We call the function first thing to get the first joke without pressing the button
+getJoke().then((result) => console.log(result)); // getJoke gets called, and we use .then as it resturns a promise now, then we print the return on the console
 
-const button = document.querySelector<HTMLButtonElement>("button"); // TS: We use the generic <HTMLButtonElement> to tell TS what specific type of element we expect, so it knows about button-specific properties
-button?.addEventListener("click", getJoke); //?. optional chaining: if button exists (is not null/undefined), we use addEventListener.
+const button = document.querySelector<HTMLButtonElement>("button"); // if button is not null, when clicked, we call the function again (next joke)
+button?.addEventListener("click", () => {
+  getJoke().then((result) => console.log(result));
+});
