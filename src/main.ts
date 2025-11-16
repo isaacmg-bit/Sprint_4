@@ -15,4 +15,5 @@ const getJoke = () => {
     });
 };
 
+getJoke();
 const button = document.querySelector("button").addEventListener("click", getJoke); 
