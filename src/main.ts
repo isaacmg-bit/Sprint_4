@@ -16,7 +16,7 @@ const getJoke = async (): Promise<AppResponse> => {
   // TS: async function converts return to promise, thats why we wrap it in promise now
   try {
     const jokeTextBox = document.querySelector<HTMLElement>("#jokebox"); // TS: We are expecting an Element, and seeing that we use textContent on it later, we are expecting an HTMLElement
-    const buttonElement = document.querySelector<HTMLButtonElement>("button");
+    const buttonElement = document.querySelector<HTMLButtonElement>("#button");
 
     if (!jokeTextBox) {
       throw new Error("The HTMLElement (p) does not exist!");
@@ -65,7 +65,7 @@ const getJoke = async (): Promise<AppResponse> => {
 
 getJoke().then((result) => console.log(result)); // getJoke gets called, and we use .then as it resturns a promise now, then we print the return on the console
 
-const button = document.querySelector<HTMLButtonElement>("button"); // if button is not null, when clicked, we call the function again (next joke)
+const button = document.querySelector<HTMLButtonElement>("#button"); // if button is not null, when clicked, we call the function again (next joke)
 button?.addEventListener("click", () => {
   getJoke().then((result) => console.log(result));
 });

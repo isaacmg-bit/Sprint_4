@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-md: 768px;
+  --breakpoint-xxl: 1440px;
+
+  --color-primary: #5368df;
+  --color-primary2: #242946;
+  --color-secondary: #fa5757;
+  --color-dark: #242a45;
+  --color-gray: #9194a1;
+  --color-light-gray: #f7f7f7;
+  --color-white: #ffffff;
+  --color-shadow: rgba(128, 128, 128, 0.199);
+
+  --font-rubik: "Rubik", sans-serif;
+
+  --text-h1: 1.5rem;
+  --text-h2: 1.9rem;
+  --text-p: 0.95rem;
+  --text-p-desktop: 1.1rem;
+  --text-h1-desktop: 2rem;
+  --text-h2-desktop: 3rem;
+
+  --shadow-base: 0 0.625rem 0.938rem 0 rgba(128, 128, 128, 0.199);
+}
