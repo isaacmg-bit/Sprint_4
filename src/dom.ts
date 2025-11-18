@@ -1,3 +1,6 @@
+import { scoreJoke } from "./scoreJoke";
+
+// fetchJoke()
 const jokeTextBox = document.querySelector<HTMLElement>("#jokebox");
 
 export const printJoke = (text: string) => {
@@ -8,6 +11,19 @@ export const printJoke = (text: string) => {
 export const buttonElement =
   document.querySelector<HTMLButtonElement>("#button");
 
-export const registerButtonHandler = (callback: () => void) => {
+export const clickButton = (callback: () => void) => {
   buttonElement?.addEventListener("click", callback);
 };
+
+// scoreJoke()
+const buttons = document.querySelectorAll("#buttonContainer button");
+export let selectedButton = "";
+
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    selectedButton = button.id;
+    console.log(selectedButton);
+
+    scoreJoke(selectedButton);
+  });
+});

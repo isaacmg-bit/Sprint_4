@@ -24,10 +24,24 @@
         ></p>
       </div>
       <div
-        class="self-center bg-[url('../assets/img/risitas.gif')] h-48 w-55 bg-contain bg-center hidden"
+        class="self-center absolute bottom-[42%] bg-[url('../assets/img/risitas.gif')] h-48 w-55 bg-contain bg-center hidden"
         id="risitas"
       >
         .
+      </div>
+      <div
+        id="buttonContainer"
+        class="flex flex-row justify-evenly gap-0.5 p-2"
+      >
+        <button type="button" id="scoreButton1">
+          Score 1
+        </button>
+        <button type="button" id="scoreButton2">
+          Score 2
+        </button>
+        <button type="button" id="scoreButton3">
+          Score 3
+        </button>
       </div>
       <div class="self-center">
         <a class="group relative inline-block mb-5">
@@ -44,7 +58,9 @@
         </a>
       </div>
     </div>
-    <script type="module" src="./src/main.ts"></script>
-    <script type="module" src="./src/risitas.ts"></script>
+
+    <script type="module" src="./src/fetchJoke.ts"></script>
+    <script type="module" src="./src/risitasGif.ts"></script>
+    <script type="module" src="./src/scoreJoke.ts"></script>
   </body>
 </html>

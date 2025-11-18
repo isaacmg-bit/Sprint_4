@@ -1,27 +1,23 @@
-import {
-  buttonElement,
-  registerButtonHandler,
-  printJoke,
-} from "./dom";
+import { buttonElement, clickButton, printJoke } from "./dom";
 
-interface ApiResponse {
+type ApiResponse = {
   // TS: We define the response structure. We know due to the API documentation that the GET request will return an object with these three properties
   id: string;
   joke: string;
   status: number;
-}
+};
 
 type AppResponse = {
   status: number;
   message: string;
+  joke?: string;
 };
 
 // TS: This is our own response structure, the one we will print throught console.
 
-const getJoke = async (): Promise<AppResponse> => {
+export const fetchJoke = async (): Promise<AppResponse> => {
   // TS: async function converts return to promise, thats why we wrap it in promise now
   try {
-
     if (!buttonElement) {
       throw new Error("Button element not found in DOM!");
     }
@@ -49,6 +45,7 @@ const getJoke = async (): Promise<AppResponse> => {
     return {
       status: 200,
       message: "OK!",
+      joke: data.joke,
     };
 
     // now we get the return when everything has been done and not right when we launch the function, as expected
@@ -60,8 +57,8 @@ const getJoke = async (): Promise<AppResponse> => {
   }
 };
 
-getJoke().then((result) => console.log(result)); // getJoke gets called, and we use .then as it resturns a promise now, then we print the return on the console
+fetchJoke().then((result) => console.log(result)); // fetchJoke gets called, and we use .then as it resturns a promise now, then we print the return on the console
 
-registerButtonHandler(() => {
-  getJoke().then((result) => console.log(result));
+clickButton(() => {
+  fetchJoke().then((result) => console.log(result));
 });
