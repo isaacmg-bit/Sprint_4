@@ -16,9 +16,12 @@ export const scoreJoke = (selectedButton: string) => {
   } else if (selectedButton === "scoreButton2") {
     const score2 = 2;
     return score2;
-  } else {
+  } else if (selectedButton === "scoreButton3"){
     const score3 = 3;
     return score3;
+  } else {
+    const score4 = 0;
+    return score4;
   }
 };
 
