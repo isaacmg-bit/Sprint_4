@@ -1,18 +1,29 @@
-import { fetchJoke } from "./fetchJoke";
+import { selectedButton } from "./dom";
 
 type ScoreJoke = {
-  joke: string;
   score: number;
-  date: string;
 };
 
 const scoreJokeDB: ScoreJoke[] = [];
 
-export function scoreJoke(selectedButton: string) {
+export const scoreJoke = (selectedButton: string) => {
   if (selectedButton === "scoreButton1") {
-    scoreJokeDB.push({ score: 1 });
-    console.log(scoreJokeDB);
+    const score1 = 1;
+    return score1;
+  } else if (selectedButton === "scoreButton2") {
+    const score2 = 2;
+    return score2;
+  } else {
+    const score3 = 3;
+    return score3;
   }
+};
+
+export const pushScore = () => {
+  const finalScore = scoreJoke(selectedButton)
+  scoreJokeDB.push({score: finalScore})
+  console.log(scoreJokeDB)
+
 }
 
 // async function. as soon as user clicks on one of the score buttons, it waits for user to press the next joke button to send the score to the array. voting is optional,

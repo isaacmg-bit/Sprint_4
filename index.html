@@ -31,27 +31,33 @@
       </div>
       <div
         id="buttonContainer"
-        class="flex flex-row justify-evenly gap-0.5 p-2"
+        class="flex flex-row justify-normal p-2"
       >
-        <button type="button" id="scoreButton1">
-          Score 1
-        </button>
-        <button type="button" id="scoreButton2">
-          Score 2
-        </button>
-        <button type="button" id="scoreButton3">
-          Score 3
-        </button>
+        <button
+          type="button"
+          id="scoreButton1"
+          class="bg-[url('../assets/img/1.png')] bg-cover w-16 h-16 cursor-pointer hover:bg-pink-500"
+        >
+        <button
+          type="button"
+          id="scoreButton2"
+          class="bg-[url('../assets/img/2.png')] bg-cover w-16 h-16 cursor-pointer hover:bg-pink-500"
+        >
+        <button
+          type="button"
+          id="scoreButton3"
+          class="bg-[url('../assets/img/3.png')] bg-cover w-16 h-16 cursor-pointer hover:bg-pink-500"
+        >
       </div>
       <div class="self-center">
         <a class="group relative inline-block mb-5">
           <span
-            class="absolute inset-0 translate-x-1.5 translate-y-1.5 bg-yellow-300 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"
+            class="absolute inset-0 translate-x-1.5 translate-y-1.5 bg-yellow-300 transition-transform group-hover:translate-x-0 group-hover:translate-y-0 rounded-4xl"
           ></span>
 
           <span
             id="button"
-            class="button cursor-pointer relative inline-block border-2 border-current px-8 py-3 text-sm font-bold tracking-widest text-black uppercase"
+            class="button cursor-pointer relative inline-block border-2 border-current px-8 py-3 text-sm font-bold tracking-widest text-black uppercase rounded-4xl"
           >
             Gimme another joke, brother!
           </span>
@@ -59,8 +65,9 @@
       </div>
     </div>
 
-    <script type="module" src="./src/fetchJoke.ts"></script>
+    <script type="module" src="./src/main.ts"></script>
+    <!-- <script type="module" src="./src/fetchJoke.ts"></script>
     <script type="module" src="./src/risitasGif.ts"></script>
-    <script type="module" src="./src/scoreJoke.ts"></script>
+    <script type="module" src="./src/scoreJoke.ts"></script> -->
   </body>
 </html>

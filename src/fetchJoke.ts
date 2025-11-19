@@ -1,4 +1,4 @@
-import { buttonElement, clickButton, printJoke } from "./dom";
+import { buttonElement, printJoke } from "./dom";
 
 type ApiResponse = {
   // TS: We define the response structure. We know due to the API documentation that the GET request will return an object with these three properties
@@ -56,9 +56,3 @@ export const fetchJoke = async (): Promise<AppResponse> => {
     };
   }
 };
-
-fetchJoke().then((result) => console.log(result)); // fetchJoke gets called, and we use .then as it resturns a promise now, then we print the return on the console
-
-clickButton(() => {
-  fetchJoke().then((result) => console.log(result));
-});
