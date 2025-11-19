@@ -22,8 +22,6 @@ export let selectedButton = "";
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     selectedButton = button.id;
-    console.log(selectedButton);
-
     scoreJoke(selectedButton);
   });
 });
