@@ -1,10 +1,16 @@
 import { buttonElement, printJoke } from "./dom";
 
 type ApiResponse = {
-  // TS: We define the response structure. We know due to the API documentation that the GET request will return an object with these three properties
   id: string;
   joke: string;
   status: number;
+};
+
+type ApiChuckResponse = {
+  icon_url: MediaImage;
+  id: string;
+  url: string;
+  value?: string;
 };
 
 type AppResponse = {
@@ -13,46 +19,75 @@ type AppResponse = {
   joke?: string;
 };
 
-// TS: This is our own response structure, the one we will print throught console.
+let currentJoke: string | null = null;
+export const getCurrentJoke = () => currentJoke;
 
 export const fetchJoke = async (): Promise<AppResponse> => {
-  // TS: async function converts return to promise, thats why we wrap it in promise now
   try {
     if (!buttonElement) {
       throw new Error("Button element not found in DOM!");
     }
-    // We check if the button exists on the HTML.
 
-    const response = await fetch("https://icanhazdadjoke.com/", {
-      // Function gets 'paused' until fetch resolves
-      method: "GET",
-      headers: { Accept: "application/json" },
-    });
+    const coin_flip = Math.random();
 
-    if (!response.ok) {
-      throw new Error(`Failed to fetch joke: ${response.status}`);
+    if (coin_flip > 0.5) {
+      const response = await fetch("https://icanhazdadjoke.com/", {
+        method: "GET",
+        headers: { Accept: "application/json" },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch joke: ${response.status}`);
+      }
+
+      const data: ApiResponse = await response.json();
+
+      if (!data.joke) {
+        throw new Error(
+          "Could not find the property 'joke' on the API response"
+        );
+      }
+      currentJoke = data.joke;
+      printJoke(currentJoke);
+
+      return {
+        status: 200,
+        message: "OK!",
+        joke: currentJoke,
+      };
+    } else {
+      const responseChuck = await fetch(
+        "https://api.chucknorris.io/jokes/random",
+        {
+          method: "GET",
+          headers: { Accept: "application/json" },
+        }
+      );
+
+      if (!responseChuck.ok) {
+        throw new Error(`Failed to fetch joke: ${responseChuck.status}`);
+      }
+
+      const dataChuck: ApiChuckResponse = await responseChuck.json();
+
+      if (!dataChuck.value) {
+        throw new Error(
+          "Could not find the property 'value' on the API response"
+        );
+      }
+      currentJoke = dataChuck.value;
+      printJoke(currentJoke);
+
+      return {
+        status: 200,
+        message: "OK!",
+        joke: currentJoke,
+      };
     }
-    // response.ok checks that the status is in the range 200-299
-
-    const data: ApiResponse = await response.json(); // function pauses until we parse the body from the response
-
-    if (!data.joke) {
-      throw new Error("Could not find the property 'joke' on the API response");
-    }
-
-    printJoke(data.joke);
-
-    return {
-      status: 200,
-      message: "OK!",
-      joke: data.joke,
-    };
-
-    // now we get the return when everything has been done and not right when we launch the function, as expected
   } catch (err: unknown) {
     return {
       status: 400,
-      message: err instanceof Error ? `Error: ${err.message}` : "Unknown error", // TS: We ask if err was created by Error, and if true, we throw the error message from the error that happened. If something weird happens, we throw Unknown error.
+      message: err instanceof Error ? `Error: ${err.message}` : "Unknown error",
     };
   }
 };

@@ -1,6 +1,6 @@
 type Weather = {
   city: string;
-  temp: string;
+  temp: number;
   condition: string;
 };
 

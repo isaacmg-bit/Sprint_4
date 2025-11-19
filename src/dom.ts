@@ -1,10 +1,9 @@
 import { scoreJoke } from "./scoreJoke";
-import { actualWeather, weatherDB } from "./weather";
+import { weatherDB } from "./weather";
 
 // fetchJoke()
-const jokeTextBox = document.querySelector<HTMLElement>("#jokebox");
-
 export const printJoke = (text: string) => {
+  const jokeTextBox = document.querySelector<HTMLElement>("#jokebox");
   if (!jokeTextBox) throw new Error("The HTMLElement (p) does not exist!");
   jokeTextBox.textContent = text;
 };
@@ -28,5 +27,16 @@ buttons.forEach((button) => {
 });
 
 //fetchWeather()
-const weatherBox = document.querySelector<HTMLElement>("#weatherbox");
-weatherBox.textContent = weatherDB;
+export const printWeather = () => {
+  const weatherBox = document.querySelector<HTMLElement>("#weatherbox");
+  if (!weatherBox) throw new Error("weatherbox not found");
+
+  const weather = weatherDB[0];
+
+  if (!weather) {
+    weatherBox.textContent = "Error fetching weather";
+    return;
+  }
+
+  weatherBox.textContent = `${weather.city} — ${weather.temp}ºC, ${weather.condition}`;
+};

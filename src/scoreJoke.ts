@@ -1,5 +1,5 @@
 import { selectedButton } from "./dom";
-import { fetchJoke } from "./fetchJoke";
+import { getCurrentJoke } from "./fetchJoke";
 
 type ScoreJoke = {
   joke: string;
@@ -16,7 +16,7 @@ export const scoreJoke = (selectedButton: string) => {
   } else if (selectedButton === "scoreButton2") {
     const score2 = 2;
     return score2;
-  } else if (selectedButton === "scoreButton3"){
+  } else if (selectedButton === "scoreButton3") {
     const score3 = 3;
     return score3;
   } else {
@@ -25,10 +25,9 @@ export const scoreJoke = (selectedButton: string) => {
   }
 };
 
-export const pushScore = async () => {
+export const pushScore = () => {
   const finalScore = scoreJoke(selectedButton);
-  const result = await fetchJoke();
-  const finalJoke = result.joke;
+  const finalJoke = getCurrentJoke();
   const date = new Date();
   scoreJokeDB.push({
     joke: finalJoke ?? "Error fetching joke",
@@ -37,7 +36,3 @@ export const pushScore = async () => {
   });
   console.log(scoreJokeDB);
 };
-
-// async function. as soon as user clicks on one of the score buttons, it waits for user to press the next joke button to send the score to the array. voting is optional,
-// so there should be an if when calling the score function to call it only when the user clicks on any of the score buttons.
-// function should prepare to push to the scorejokedb array with the fecthed joke, the score the user gave to it and the timestamp (await).
