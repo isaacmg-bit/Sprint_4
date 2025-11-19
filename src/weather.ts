@@ -1,3 +1,11 @@
+type Weather = {
+  city: string;
+  temp: string;
+  condition: string;
+};
+
+export const weatherDB: Weather[] = [];
+
 export const fetchWeather = async () => {
   const response = await fetch(
     "http://api.weatherapi.com/v1/current.json?key=ee7c31ce651d4b2596c114408251911&q=Barcelona/",
@@ -7,7 +15,17 @@ export const fetchWeather = async () => {
     }
   );
   const data = await response.json();
-  console.log(data);
+  return data;
 };
 
-fetchWeather();
+export const actualWeather = async () => {
+  const data = await fetchWeather();
+  const weatherCity = data.location.name;
+  const weatherTemp = data.current.temp_c;
+  const weatherCondition = data.current.condition.text;
+  weatherDB.push({
+    city: weatherCity,
+    temp: weatherTemp,
+    condition: weatherCondition,
+  });
+};

@@ -1,4 +1,5 @@
 import { scoreJoke } from "./scoreJoke";
+import { actualWeather, weatherDB } from "./weather";
 
 // fetchJoke()
 const jokeTextBox = document.querySelector<HTMLElement>("#jokebox");
@@ -25,3 +26,7 @@ buttons.forEach((button) => {
     scoreJoke(selectedButton);
   });
 });
+
+//fetchWeather()
+const weatherBox = document.querySelector<HTMLElement>("#weatherbox");
+weatherBox.textContent = weatherDB;
