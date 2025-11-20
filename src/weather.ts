@@ -2,6 +2,7 @@ type Weather = {
   city: string;
   temp: number;
   condition: string;
+  icon: string;
 };
 
 export const weatherDB: Weather[] = [];
@@ -23,9 +24,11 @@ export const actualWeather = async () => {
   const weatherCity = data.location.name;
   const weatherTemp = data.current.temp_c;
   const weatherCondition = data.current.condition.text;
+  const weatherIcon = data.current.condition.icon;
   weatherDB.push({
     city: weatherCity,
     temp: weatherTemp,
     condition: weatherCondition,
+    icon: weatherIcon,
   });
 };

@@ -29,6 +29,11 @@ buttons.forEach((button) => {
 //fetchWeather()
 export const printWeather = () => {
   const weatherBox = document.querySelector<HTMLElement>("#weatherbox");
+  const weatherIcon = document.createElement("IMG");
+  document
+    .querySelector<HTMLElement>("#weathercontainer")
+    ?.appendChild(weatherIcon);
+
   if (!weatherBox) throw new Error("weatherbox not found");
 
   const weather = weatherDB[0];
@@ -38,5 +43,6 @@ export const printWeather = () => {
     return;
   }
 
-  weatherBox.textContent = `${weather.city} — ${weather.temp}ºC, ${weather.condition}`;
+  weatherBox.textContent = `${weather.temp}ºC |`;
+  weatherIcon.setAttribute("src", `${weather.icon}`);
 };
