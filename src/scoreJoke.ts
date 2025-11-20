@@ -35,4 +35,5 @@ export const pushScore = () => {
     date: date,
   });
   console.log(scoreJokeDB);
+  selectedButton = ""; ///////////reset selectedbutton
 };
