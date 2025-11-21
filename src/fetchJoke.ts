@@ -7,7 +7,6 @@ type ApiResponse = {
 };
 
 type ApiChuckResponse = {
-  icon_url: MediaImage;
   id: string;
   url: string;
   value?: string;

@@ -8,7 +8,7 @@ export const printJoke = (text: string) => {
   jokeTextBox.textContent = text;
 };
 
-export const buttonElement =
+export let buttonElement =
   document.querySelector<HTMLButtonElement>("#button");
 
 export const clickButton = (callback: () => void) => {
