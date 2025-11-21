@@ -25,7 +25,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 fetchJoke().then((result) => console.log(result));
 
 clickButton(() => {
-  pushScore(selectedButton); // Puntuar el chiste actual (si hay selección)
-  clearSelectedButton(); // Limpiar la selección para el próximo chiste
-  fetchJoke().then((result) => console.log(result)); // Mostrar nuevo chiste
+  pushScore(selectedButton);
+  clearSelectedButton();
+  fetchJoke().then((result) => console.log(result));
 });

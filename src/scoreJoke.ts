@@ -6,7 +6,7 @@ type ScoreJoke = {
   date: Date;
 };
 
-const scoreJokeDB: ScoreJoke[] = [];
+export const scoreJokeDB: ScoreJoke[] = [];
 
 export const scoreJoke = (selectedButton: string) => {
   if (selectedButton === "scoreButton1") {
