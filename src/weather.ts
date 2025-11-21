@@ -15,6 +15,11 @@ export const fetchWeather = async () => {
       headers: { Accept: "application/json" },
     }
   );
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch weather: ${response.status}`);
+  }
+
   const data = await response.json();
   return data;
 };
