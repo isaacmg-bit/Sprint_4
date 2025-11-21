@@ -1,4 +1,3 @@
-import { selectedButton } from "./dom";
 import { getCurrentJoke } from "./fetchJoke";
 
 type ScoreJoke = {
@@ -25,8 +24,11 @@ export const scoreJoke = (selectedButton: string) => {
   }
 };
 
-export const pushScore = () => {
-  const finalScore = scoreJoke(selectedButton);
+export const pushScore = (button: string) => {
+  if (!button) {
+    return;
+  }
+  const finalScore = scoreJoke(button);
   const finalJoke = getCurrentJoke();
   const date = new Date();
   scoreJokeDB.push({

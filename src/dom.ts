@@ -8,8 +8,7 @@ export const printJoke = (text: string) => {
   jokeTextBox.textContent = text;
 };
 
-export let buttonElement =
-  document.querySelector<HTMLButtonElement>("#button");
+export let buttonElement = document.querySelector<HTMLButtonElement>("#button");
 
 export const clickButton = (callback: () => void) => {
   buttonElement?.addEventListener("click", callback);
@@ -18,6 +17,9 @@ export const clickButton = (callback: () => void) => {
 // scoreJoke()
 const buttons = document.querySelectorAll("#buttonContainer button");
 export let selectedButton = "";
+export const clearSelectedButton = () => {
+  selectedButton = "";
+};
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
