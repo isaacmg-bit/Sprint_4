@@ -73,7 +73,7 @@ This project started as a way to learn TypeScript, API fetching, and to reinforc
 
 ```text
 # Clone the repository
-git clone https://github.com/isaacmg-bit/js-basics-Sprint-2.2.git
+git clone https://github.com/isaacmg-bit/Sprint_4.git
 
 # Navigate to the project folder
 
