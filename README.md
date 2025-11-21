@@ -11,7 +11,7 @@
 ![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=white)
 ![License: CC BY-NC](https://img.shields.io/badge/license-CC--BY--NC-orange)
 
-**Random joke fetcher** built with **Tailwind**, **JavaScript** and **TypeScript\*\* , designed with a desktop approach.
+**Random joke fetcher** built with **Tailwind**, **JavaScript** and **TypeScript** , designed with a desktop approach.
 
 ---
 
