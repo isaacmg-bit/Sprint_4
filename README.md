@@ -123,7 +123,7 @@ Open the localserver that has been created
 
 ## API
 
-This project fetches jokes from **two different public APIs**, allowing users to receive a random **Dad joke** or **Chuck Norris joke**.
+This project fetches jokes from **three different public APIs**, allowing users to receive a random **Dad joke** or **Chuck Norris joke**.
 
 ### 1. icanhazdadjoke API
 
