@@ -48,3 +48,20 @@ export const printWeather = () => {
   weatherBox.textContent = `${weather.temp}ºC |`;
   weatherIcon.setAttribute("src", `${weather.icon}`);
 };
+
+//jokeContainerColor()
+
+export const jokeContainerColor = async () => {
+  const jokeContainer = document.querySelector<HTMLElement>("#jokecontainer");
+
+  if (!jokeContainer) return;
+
+  const color =
+    "#" +
+    Math.floor(Math.random() * 0xffffff)
+      .toString(16)
+      .padStart(6, "0") +
+    "e6";
+
+  jokeContainer.style.backgroundColor = color;
+};

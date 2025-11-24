@@ -7,6 +7,7 @@ import {
 } from "./dom";
 import { pushScore } from "./scoreJoke";
 import { actualWeather } from "./weather";
+import { jokeContainerColor } from "./dom";
 
 window.addEventListener("DOMContentLoaded", async () => {
   try {
@@ -25,6 +26,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 fetchJoke().then((result) => console.log(result));
 
 clickButton(() => {
+  jokeContainerColor();
   pushScore(selectedButton);
   clearSelectedButton();
   fetchJoke().then((result) => console.log(result));
