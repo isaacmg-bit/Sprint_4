@@ -8,7 +8,7 @@ export const printJoke = (text: string) => {
   jokeTextBox.textContent = text;
 };
 
-export let buttonElement = document.querySelector<HTMLButtonElement>("#button");
+export const buttonElement = document.querySelector<HTMLButtonElement>("#button");
 
 export const clickButton = (callback: () => void) => {
   buttonElement?.addEventListener("click", callback);
@@ -31,7 +31,7 @@ buttons.forEach((button) => {
 //fetchWeather()
 export const printWeather = () => {
   const weatherBox = document.querySelector<HTMLElement>("#weatherbox");
-  const weatherIcon = document.createElement("IMG");
+  const weatherIcon = document.createElement("img") as HTMLImageElement;
   document
     .querySelector<HTMLElement>("#weathercontainer")
     ?.appendChild(weatherIcon);

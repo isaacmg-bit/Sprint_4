@@ -5,9 +5,22 @@ type Weather = {
   icon: string;
 };
 
+type WeatherApiResponse = {
+  location: {
+    name: string;
+  };
+  current: {
+    temp_c: number;
+    condition: {
+      text: string;
+      icon: string;
+    };
+  };
+};
+
 export const weatherDB: Weather[] = [];
 
-export const fetchWeather = async () => {
+export const fetchWeather = async (): Promise<WeatherApiResponse> => {
   const response = await fetch(
     "http://api.weatherapi.com/v1/current.json?key=ee7c31ce651d4b2596c114408251911&q=Barcelona/",
     {
@@ -20,7 +33,7 @@ export const fetchWeather = async () => {
     throw new Error(`Failed to fetch weather: ${response.status}`);
   }
 
-  const data = await response.json();
+  const data: WeatherApiResponse = await response.json();
   return data;
 };
 
